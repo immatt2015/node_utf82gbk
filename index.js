@@ -7,17 +7,18 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question('输入汉字', (ans)=>{
+rl.question('输入汉字:  \n', (ans)=>{
     // core
     let buf = iconv.encode(ans, 'GBK');
 
-    let arr = [];
+    let str = '';
     for(let i of buf.values()){
-        arr.push('%' + i.toString(16).toUpperCase());
+        if(i) str += '%' + i.toString(16).toUpperCase();
     }
     // core end 
     
-    rl.write(arr.join('%'));
+    rl.write(str);
+    rl.write('\n');
 
     rl.close(); 
 });
